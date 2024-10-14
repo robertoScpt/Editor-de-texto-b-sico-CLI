@@ -1,0 +1,6 @@
+comandos do input:
+
+'q' para fechar a janela
+'wq' para salvar e fechar a janela
+'w' para salvar
+'i' para escrever
