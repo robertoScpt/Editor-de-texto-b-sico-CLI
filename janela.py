@@ -4,6 +4,7 @@ import argparse
 import os
 import json
 
+#Caminho para o arquivo de configuração da janela, chamado config.json
 cfg = os.path.join('config.json')
 
 # Configurando o parser
@@ -13,12 +14,12 @@ parser.add_argument("caminho", type=str, nargs='*', help="Caminho do arquivo")
 # Parse dos argumentos
 args = parser.parse_args()
 c = ' '.join(args.caminho)
-# Criação da janela principal
+
+
 def foconat(event):
     text_area.focus_set()
 def foconoi(event):
     inp.focus_set()
-
 
 root = tk.Tk()
 root.geometry('600x500')
@@ -37,7 +38,7 @@ def leitura(caminho):
     # Limpa o conteúdo atual da Text
     text_area.delete(1.0, tk.END)
     if os.path.isfile(caminho):
-        # Lê o conteúdo do arquivo e insere na Text
+        # Lê o conteúdo do arquivo e insere na textarea
         conteudo = arquivo.read()
         root.title(nome)
         text_area.insert(tk.END, conteudo)
@@ -48,10 +49,11 @@ def leitura(caminho):
 inp = tk.Entry(root)
 inp.pack(fill=tk.BOTH)
 
-#obitendo os estilos
+#obitendo a configuração
 arqA = open(cfg, 'r')
 jsonabA = json.load(arqA)
 arqA.close()
+#obtendo todo o estilo
 text_area['font'] = jsonabA['EstiloDaFonte'], jsonabA['TamanhoDFonte']
 text_area['background'] = jsonabA['CorDeFundo']
 text_area['foreground'] = jsonabA['CorDeTexto']
